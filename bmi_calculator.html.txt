@@ -4,10 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BMI Calculator</title>
-<!-- 🟢 NEW: Link to the Web App Manifest -->
-<link rel="manifest" href="/manifest.json">
-<!-- 🟢 NEW: Add a high-resolution icon for the home screen (You need to upload an actual icon file later) -->
-<link rel="apple-touch-icon" href="/icon-192x192.png">
 <!-- Load Tailwind CSS for modern, responsive styling -->
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
@@ -46,9 +42,9 @@ from { opacity: 0; transform: translateY(-20px); }
 to { opacity: 1; transform: translateY(0); }
 }
 </style>
-
 </head>
 <body>
+
 <div class="card bg-white p-6 sm:p-8 rounded-2xl">
 <h1 class="text-3xl font-extrabold text-gray-800 text-center mb-2">
 Body Mass Index Calculator
@@ -125,7 +121,7 @@ return;
 // Convert height from cm to meters (m)
 const heightM = heightCm / 100;
 
-// Formula: BMI = weight (kg) / [height (m)]²
+// Formula: BMI = weight (kg) / [height (m)]Â²
 const bmi = weightKg / (heightM * heightM);
 const roundedBmi = bmi.toFixed(1); // Round to one decimal place
 
@@ -166,16 +162,6 @@ resultArea.classList.remove('hidden');
 // Scroll to the result area on small screens
 resultArea.scrollIntoView({ behavior: 'smooth' });
 });
-
-// 🟢 Register the Service Worker (Enables offline use and installability)
-if ('serviceWorker' in navigator) {
-window.addEventListener('load', () => {
-// Ensure the path to the service worker is correct relative to the root of your GitHub repository
-navigator.serviceWorker.register('/service-worker.js')
-.then(reg => console.log('Service Worker registered: ', reg))
-.catch(err => console.log('Service Worker registration failed: ', err));
-});
-}
 </script>
 
 </body>
