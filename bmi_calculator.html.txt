@@ -1,168 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BMI Calculator</title>
-<!-- Load Tailwind CSS for modern, responsive styling -->
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-/* Custom styles to enhance the mobile-first design */
-body {
-font-family: 'Inter', sans-serif;
-background-color: #f1f5f9; /* Light blue-gray background */
-display: flex;
-justify-content: center;
-align-items: flex-start; /* Align to the top for better mobile scrolling */
-min-height: 100vh;
-padding: 2rem 1rem;
-}
-.card {
-max-width: 400px;
-width: 100%;
-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-animation: slideIn 0.5s ease-out;
-}
-.input-field {
-border: 2px solid #cbd5e1; /* Slate-300 border */
-transition: all 0.2s;
-}
-.input-field:focus {
-border-color: #3b82f6; /* Blue-500 focus */
-box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-}
-.calc-button {
-transition: background-color 0.2s, transform 0.1s;
-}
-.calc-button:active {
-transform: scale(0.98);
-}
-@keyframes slideIn {
-from { opacity: 0; transform: translateY(-20px); }
-to { opacity: 1; transform: translateY(0); }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <!-- 🟢 PWA LINE 1: Link to the Web App Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <!-- 🟢 PWA LINE 2: Add a high-resolution icon for the home screen -->
+    <link rel="apple-touch-icon" href="/icon-192x192.png"> 
+    
+    <!-- Load Tailwind CSS for modern, responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles to enhance the mobile-first design */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9; /* Light blue-gray background */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to the top for better mobile scrolling */
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+        .card {
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.5s ease-out;
+        }
+        .input-field {
+            border: 2px solid #cbd5e1; /* Slate-300 border */
+            transition: all 0.2s;
+        }
+        .input-field:focus {
+            border-color: #3b82f6; /* Blue-500 focus */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        .calc-button {
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        .calc-button:active {
+            transform: scale(0.98);
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
 
-<div class="card bg-white p-6 sm:p-8 rounded-2xl">
-<h1 class="text-3xl font-extrabold text-gray-800 text-center mb-2">
-Body Mass Index Calculator
-</h1>
-<p class="text-center text-gray-500 mb-8">
-Enter your measurements below.
-</p>
+    <div class="card bg-white p-6 sm:p-8 rounded-2xl">
+        <h1 class="text-3xl font-extrabold text-gray-800 text-center mb-2">
+            Body Mass Index Calculator
+        </h1>
+        <p class="text-center text-gray-500 mb-8">
+            Enter your measurements below.
+        </p>
 
-<!-- Input Form -->
-<form id="bmiForm" class="space-y-5">
-<!-- Weight Input (kg) -->
-<div>
-<label for="weight" class="block text-sm font-medium text-gray-700 mb-1">Weight (in Kilograms - kg)</label>
-<input type="number" id="weight" name="weight" placeholder="e.g., 70"
-class="input-field w-full p-3 rounded-lg text-lg focus:outline-none"
-min="1" required>
-</div>
+        <!-- Input Form -->
+        <form id="bmiForm" class="space-y-5">
+            <!-- Weight Input (kg) -->
+            <div>
+                <label for="weight" class="block text-sm font-medium text-gray-700 mb-1">Weight (in Kilograms - kg)</label>
+                <input type="number" id="weight" name="weight" placeholder="e.g., 70"
+                       class="input-field w-full p-3 rounded-lg text-lg focus:outline-none"
+                       min="1" required>
+            </div>
 
-<!-- Height Input (cm) -->
-<div>
-<label for="height" class="block text-sm font-medium text-gray-700 mb-1">Height (in Centimeters - cm)</label>
-<input type="number" id="height" name="height" placeholder="e.g., 175"
-class="input-field w-full p-3 rounded-lg text-lg focus:outline-none"
-min="1" required>
-</div>
+            <!-- Height Input (cm) -->
+            <div>
+                <label for="height" class="block text-sm font-medium text-gray-700 mb-1">Height (in Centimeters - cm)</label>
+                <input type="number" id="height" name="height" placeholder="e.g., 175"
+                       class="input-field w-full p-3 rounded-lg text-lg focus:outline-none"
+                       min="1" required>
+            </div>
 
-<!-- Calculate Button -->
-<button type="submit"
-class="calc-button w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl shadow-md shadow-blue-300 text-lg">
-Calculate BMI
-</button>
-</form>
+            <!-- Calculate Button -->
+            <button type="submit"
+                    class="calc-button w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl shadow-md shadow-blue-300 text-lg">
+                Calculate BMI
+            </button>
+        </form>
 
-<!-- Result Display Area -->
-<div id="result-area" class="mt-8 pt-6 border-t border-gray-200 hidden">
-<h2 class="text-xl font-semibold text-gray-800 mb-3">Your Result:</h2>
+        <!-- Result Display Area -->
+        <div id="result-area" class="mt-8 pt-6 border-t border-gray-200 hidden">
+            <h2 class="text-xl font-semibold text-gray-800 mb-3">Your Result:</h2>
+            
+            <div class="bg-blue-50 p-4 rounded-xl text-center">
+                <p class="text-5xl font-extrabold text-blue-600" id="bmi-value">--</p>
+                <p class="text-lg font-medium mt-2" id="bmi-category">--</p>
+            </div>
 
-<div class="bg-blue-50 p-4 rounded-xl text-center">
-<p class="text-5xl font-extrabold text-blue-600" id="bmi-value">--</p>
-<p class="text-lg font-medium mt-2" id="bmi-category">--</p>
-</div>
+            <!-- Hint Section -->
+            <div class="mt-4 p-3 bg-yellow-50 rounded-lg text-sm text-yellow-800">
+                <p class="font-semibold">BMI Categories:</p>
+                <ul class="list-disc list-inside space-y-1 mt-1">
+                    <li>Underweight: BMI &lt; 18.5</li>
+                    <li>Normal weight: BMI 18.5 - 24.9</li>
+                    <li>Overweight: BMI 25 - 29.9</li>
+                    <li>Obesity: BMI &ge; 30</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-<!-- Hint Section -->
-<div class="mt-4 p-3 bg-yellow-50 rounded-lg text-sm text-yellow-800">
-<p class="font-semibold">BMI Categories:</p>
-<ul class="list-disc list-inside space-y-1 mt-1">
-<li>Underweight: BMI &lt; 18.5</li>
-<li>Normal weight: BMI 18.5 - 24.9</li>
-<li>Overweight: BMI 25 - 29.9</li>
-<li>Obesity: BMI &ge; 30</li>
-</ul>
-</div>
-</div>
-</div>
+    <script>
+        document.getElementById('bmiForm').addEventListener('submit', function(event) {
+            // Prevent the default form submission behavior (which causes a page refresh)
+            event.preventDefault(); 
+            
+            // 1. Get Input Values
+            const weightKg = parseFloat(document.getElementById('weight').value);
+            const heightCm = parseFloat(document.getElementById('height').value);
 
-<script>
-document.getElementById('bmiForm').addEventListener('submit', function(event) {
-// Prevent the default form submission behavior (which causes a page refresh)
-event.preventDefault();
+            // Basic validation
+            if (isNaN(weightKg) || isNaN(heightCm) || weightKg <= 0 || heightCm <= 0) {
+                document.getElementById('bmi-value').textContent = 'Error';
+                document.getElementById('bmi-category').textContent = 'Please enter valid numbers.';
+                document.getElementById('result-area').classList.remove('hidden');
+                return;
+            }
 
-// 1. Get Input Values
-const weightKg = parseFloat(document.getElementById('weight').value);
-const heightCm = parseFloat(document.getElementById('height').value);
+            // 2. Calculation
+            // Convert height from cm to meters (m)
+            const heightM = heightCm / 100;
+            
+            // Formula: BMI = weight (kg) / [height (m)]²
+            const bmi = weightKg / (heightM * heightM);
+            const roundedBmi = bmi.toFixed(1); // Round to one decimal place
 
-// Basic validation
-if (isNaN(weightKg) || isNaN(heightCm) || weightKg <= 0 || heightCm <= 0) {
-document.getElementById('bmi-value').textContent = 'Error';
-document.getElementById('bmi-category').textContent = 'Please enter valid numbers.';
-document.getElementById('result-area').classList.remove('hidden');
-return;
-}
+            // 3. Determine Category
+            let category = '';
+            let colorClass = '';
 
-// 2. Calculation
-// Convert height from cm to meters (m)
-const heightM = heightCm / 100;
+            if (bmi < 18.5) {
+                category = 'Underweight';
+                colorClass = 'text-yellow-600';
+            } else if (bmi >= 18.5 && bmi < 25) {
+                category = 'Normal weight';
+                colorClass = 'text-green-600';
+            } else if (bmi >= 25 && bmi < 30) {
+                category = 'Overweight';
+                colorClass = 'text-orange-600';
+            } else {
+                category = 'Obesity';
+                colorClass = 'text-red-600';
+            }
 
-// Formula: BMI = weight (kg) / [height (m)]Â²
-const bmi = weightKg / (heightM * heightM);
-const roundedBmi = bmi.toFixed(1); // Round to one decimal place
+            // 4. Display Results
+            const resultArea = document.getElementById('result-area');
+            const bmiValueDisplay = document.getElementById('bmi-value');
+            const bmiCategoryDisplay = document.getElementById('bmi-category');
+            
+            // Update Text Content
+            bmiValueDisplay.textContent = roundedBmi;
+            bmiCategoryDisplay.textContent = category;
+            
+            // Update Color based on Category
+            // Reset existing color classes and apply new one
+            bmiCategoryDisplay.className = `text-lg font-medium mt-2 ${colorClass}`;
+            
+            // Show the result area
+            resultArea.classList.remove('hidden');
+            
+            // Scroll to the result area on small screens
+            resultArea.scrollIntoView({ behavior: 'smooth' });
+        });
 
-// 3. Determine Category
-let category = '';
-let colorClass = '';
-
-if (bmi < 18.5) {
-category = 'Underweight';
-colorClass = 'text-yellow-600';
-} else if (bmi >= 18.5 && bmi < 25) {
-category = 'Normal weight';
-colorClass = 'text-green-600';
-} else if (bmi >= 25 && bmi < 30) {
-category = 'Overweight';
-colorClass = 'text-orange-600';
-} else {
-category = 'Obesity';
-colorClass = 'text-red-600';
-}
-
-// 4. Display Results
-const resultArea = document.getElementById('result-area');
-const bmiValueDisplay = document.getElementById('bmi-value');
-const bmiCategoryDisplay = document.getElementById('bmi-category');
-
-// Update Text Content
-bmiValueDisplay.textContent = roundedBmi;
-bmiCategoryDisplay.textContent = category;
-
-// Update Color based on Category
-// Reset existing color classes and apply new one
-bmiCategoryDisplay.className = `text-lg font-medium mt-2 ${colorClass}`;
-
-// Show the result area
-resultArea.classList.remove('hidden');
-
-// Scroll to the result area on small screens
-resultArea.scrollIntoView({ behavior: 'smooth' });
-});
-</script>
+        // 🟢 PWA LINE 3: Register the Service Worker (Enables offline use and installability)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(reg => console.log('Service Worker registered: ', reg))
+                    .catch(err => console.log('Service Worker registration failed: ', err));
+            });
+        }
+    </script>
 
 </body>
 </html>
+
